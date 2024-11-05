@@ -132,4 +132,72 @@ let registroUsuario=(nombre,apellido)=>{
 console.log(registroAlumno("edwin","cachondo"))
 
 ```
-### Diferencias 
+### Diferencias
+las diferencias que tenemos al momento de crear una funcion declarativa, funcion como valor y flechaes el binding.
+### binding
+es una tecnica que guarda las funciones y variables (enlaces) sube al principio la de declaracion no el valor a la cabecera del archivo javascript
+```js
+despedida()
+function saludo(){
+    return "hola"
+}
+function despedida(){
+    return "adios"
+}
+```
+```js
+function saludo()
+function despedida()
+```
+## la pila de llamadas (call stack)
+es una tecnica que se usa para controlar de manera correcta la ejecucion de una funcion.
+**Averiguar sobre LIFO**
+```js
+//programa que haga una ensalada
+function cortarTomate() {
+    console.log("cortando tomates")
+}
+function cortarLechuga() {
+    console.log("cortando lechuga")
+}
+function cortarPepino() {
+    console.log("cortando pepino para el primo")
+}
+function cortarLimon() {
+    console.log("cortando limon")
+}
+function prepararEnsalada() {
+    cortarTomate()
+    cortarLechuga()
+    cortarPepino()
+    cortarLimon()
+    console.log("mesclando las verduras")
+}
+function comer() {
+    prepararEnsalada()
+    console.log("tragando la ensalada")
+}
+comer()
+```
+## CLOSURE o Funciones de Cierre(Funciones que retornan Funciones)
+Un `closure`es una funcion que encapsula una serie de variable y difiniciones locales que unicamente seran accecibles si son devueltas con el keyword `return`.
+Antes de que aparesca la version de `ecma 6` los `closure` eran un pattron creacional que nos permita modularizar nuestro codigo, en lugar de usar las `clases`, que eran populares en otros lenguajes pero que `JS` aun no lo implementaba.
+```js
+//una funcion que retorna otra funcion (por lo general es una funcion anonima)
+//funcion clasica
+function retornaValor(n){
+    return n+1
+}
+//lamando a la funcion clasica
+retornaValor(10)
+//funcion closure
+function RetornaValor(n){
+    return function(){
+        return n+1
+    }
+}
+//llamando a la funcion closure
+RetornaValor(10)()
+```
+> [!NOTE]
+> Las funciones `closure` son usadas por que pueden mantener el valor de sus enlaces o variables locales en todo el preceso de la ejecucion de su funcion padre
