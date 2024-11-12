@@ -69,14 +69,37 @@ function contador(){
 // count1.decre()
 // count1.valueContador()
 
-let count1=contador()
-for (let i=0;1<5;1++){
-    count1.incre()
-}
-count1.valueCount()
+// let count1=contador()
+// for (let i=0;1<5;1++){
+//     count1.incre()
+// }
+// count1.valueCount()
 
-let count2=contador()
-for (let i=0;1<5;1++){
-    count1.decre()
+// let count2=contador()
+// for (let i=0;1<5;1++){
+//     count1.decre()
+// }
+//     count2.valueCount()
+
+function Contador(nombre) {
+    this.count = 0;
+    this.nombre = nombre;
 }
-    count2.valueCount()
+
+Contador.prototype = {
+    incremento: function() { this.count++; },
+    decremento: function() { this.count--; },
+    mostrarDato: function() { return `${this.count}, ${this.nombre}`; },
+    actualizarNombre: function(nuevoNombre) { this.nombre = nuevoNombre; }
+};
+
+// Instancia de la clase Contador
+let contadorUno = new Contador("El primo");
+console.log(contadorUno.mostrarDato());  
+
+contadorUno.incremento();
+contadorUno.incremento();
+console.log(contadorUno.mostrarDato());  
+// Actualizar el nombre y mostrar nuevamente
+contadorUno.actualizarNombre("El segundo primo");
+console.log(contadorUno.mostrarDato());  // Output con el nombre actualizado

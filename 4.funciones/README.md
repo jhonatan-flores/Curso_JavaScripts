@@ -252,3 +252,16 @@ let persona2 = new Persona("Ana", 25);
 console.log(persona1.saludar()); // "Hola, mi nombre es Juan y tengo 30 años."
 console.log(persona2.saludar()); // "Hola, mi nombre es Ana y tengo 25 años."
 ```
+```js
+function Contador(nombre){
+     this.count=0
+     this.nombre=nombre
+}
+Contador.prototype={
+    incremento:function(){this.count++},
+    decremento:function(){this.count--},
+    mostrarDato:function(){return`${this.count}, ${this.nombre}`}
+}
+```
+> [!NOTE]
+> es una comvencion usar como nombre de nuestra funcion principal ,1. Que deve ser singular, 2. Que use PascalCase
