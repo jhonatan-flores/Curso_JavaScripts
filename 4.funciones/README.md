@@ -179,25 +179,76 @@ function comer() {
 }
 comer()
 ```
-## CLOSURE o Funciones de Cierre(Funciones que retornan Funciones)
-Un `closure`es una funcion que encapsula una serie de variable y difiniciones locales que unicamente seran accecibles si son devueltas con el keyword `return`.
-Antes de que aparesca la version de `ecma 6` los `closure` eran un pattron creacional que nos permita modularizar nuestro codigo, en lugar de usar las `clases`, que eran populares en otros lenguajes pero que `JS` aun no lo implementaba.
+## CLOSURE o Funciones de Cierre (Funciones que retorna funciones)
+Un `closure` es una funcion que encapsula una serie de variables y definifiones locales que unicamente accesibles si son debueltas con el keyword `return`
+antes de que aparesca la version `ecma 6` los `closure` eran un patron creacional que nos permitia modularisar nuestro codigo en lugar de usar las `clases`, que eran populares en otros lenguajes pero que javascript aun no lo implementaba.
 ```js
-//una funcion que retorna otra funcion (por lo general es una funcion anonima)
-//funcion clasica
-function retornaValor(n){
+//una funcion que retorna otra funcion(por lo general es una funcion anonima)
+function retornaValor (n){
     return n+1
 }
-//lamando a la funcion clasica
+//llamando a la funcion clasica
 retornaValor(10)
 //funcion closure
-function RetornaValor(n){
+function retornaValor(n){
     return function(){
         return n+1
     }
 }
 //llamando a la funcion closure
-RetornaValor(10)()
+retornaValor(10)()
 ```
 > [!NOTE]
-> Las funciones `closure` son usadas por que pueden mantener el valor de sus enlaces o variables locales en todo el preceso de la ejecucion de su funcion padre
+> las funciones `closure` son usadas por que pueden mantener el valor de sus enlaces o variables locales en todo el proceso de la ejecucion de su funcion padre por cada llamada que se le realize
+
+### Closure Tipo clase
+son funciones cuyo uso son inguales a las clases dentro de la ejecucucion de una clase tenemos lo que se llama como `instancia` en javascript tenemos funciones `closure` que se pueden instanciar al igual que una clase, la diferencia con las funciones `closure` clasicas es que en esta hacemos uso de la palabra reservada `keyword` llama `this`.
+```js
+function contador(){
+    this.contador=0
+    this.incre=function(){
+        this.contador++
+    }
+    this.decre=function(){
+        this.contador--
+    }
+}
+//realizamos la instancia
+let count1=new contador
+count1.contador
+for(let i=0,i<5;i++){
+    count1.incre()
+}
+```
+> [!NOTE]
+> la funcion closure de tipo clase no hace uso de `return` en sus funciones al hacer uso de `this` cada funcion o variable estara enlazada al objeto que se cree
+
+> [!WARNING]
+> El problema principal de este tipo de funcion es que cuando creamos un nuevo objeto a partir de la funcion tipo clase, reservara espacio en memoria para toda la clase y sus valores creadors eso quiere decir variables y funciones, cada vez que llamamos a una funcion esta se replica en memoria.
+
+## prototype (Tarea - averiguar y sus ejemplos)
+El prototype en JavaScript es un mecanismo que permite agregar propiedades y métodos a los objetos creados por funciones constructoras. Esto es muy útil cuando quieres crear múltiples instancias de un objeto que compartan ciertos comportamientos o datos sin necesidad de definirlos cada vez.
+
+¿Qué es el prototype en JavaScript?
+
+Cada función en JavaScript tiene una propiedad llamada prototype. Cuando creas un objeto a partir de una función constructora usando new, el objeto hereda todas las propiedades y métodos que están en el prototype de esa función. Esto permite compartir comportamientos y mejorar el rendimiento, ya que no necesitas duplicar métodos para cada instancia del objeto.
+```js
+// Definimos una función constructora llamada Persona
+function Persona(nombre, edad) {
+    this.nombre = nombre;
+    this.edad = edad;
+}
+
+// Agregamos un método al prototype de Persona
+Persona.prototype.saludar = function() {
+    return `Hola, mi nombre es ${this.nombre} y tengo ${this.edad} años.`;
+};
+
+// Creamos una instancia de Persona
+let persona1 = new Persona("Juan", 30);
+let persona2 = new Persona("Ana", 25);
+
+// Usamos el método saludar, que fue agregado al prototype
+console.log(persona1.saludar()); // "Hola, mi nombre es Juan y tengo 30 años."
+console.log(persona2.saludar()); // "Hola, mi nombre es Ana y tengo 25 años."
+```
