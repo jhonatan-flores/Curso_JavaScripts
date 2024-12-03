@@ -77,6 +77,51 @@ y son los siguientes:
 ```js
 let parrafo=document.getElementById("dos")
 ```
+- **getElementByClassName** - devuelve un elemento que tanga una clase especifica.
+```html
+<h1 id="titulo">titulo</h1>
+<p class="parrafo">parrafo uno</p>
+<p class="parrafo_dos">parrafo dos</p>
+```
+```js
+let parrafo=documento.getElementByClassName("parrafo")
+```
+- **querySelector** - devuelve el primer elemento ue coincida con el selector ingresado puede ser un id, class, name o tag.
+```html
+<h1 id="titulo">titulo</h1>
+<p class="parrafo">parrafo uno</p>
+<p class="parrafo_dos">parrafo dos</p>
+<h2>subtitulo</h2>
+```
+```js
+let titutlo=querySelector("#titulo")
+let primerParrafo=document.querySelector(".parrafo")
+let segundoParrafo=document.querySelector("#parrafo_dos")
+let subTitulo=documento.querySelector("h2")
+```
+**averiguar que otros selectores o metodos para recorrer el DOM tiene javascript**
+
+## Manipulacion del DOM
+- **createElement** - este metodo crea un elemento HTML con el nombre que le pasemos por parametro
+```js
+let titulo=document.createElement("h1")
+```
+- **appendChild** - nos permite hacer hijo un elemento dentro de otro
+```js
+let titulo=document.createElement("h1")
+let body=querySelector("body")
+body.appendChild(titulo)
+```
+## Propiedades de los elementos DOM
+- **className** - esta propiedad nos permite setear o caprurar el nombre de la clase que tenga un elemento.
+- **id** - lo mismo que classv pero con el atributo id.
+- **innerHTML** - devuelve o permite insertar codigo HTML (incluyendo tag y texto).
+- **textContent** - nos permite agregar o modificar el contenido de un elemento.
+- **value** - nos permite optener o setear valores de un elemento `input`.
+## Acciones o Eventos con elementos en el DOM (averiguar)
+addEventListener("clic",()=>{
+    
+})
 > [!NOTE]
 > tecnologias para el procesamiento de texto a travez de marcado `markup` (etiquetas- que nos permite a travez de palabras reservadas darle un estilo o significado al contenido de las etiquetas). la primera tecnologia fue `xml`, despues de la ultima generacion de tecnologias de markado de texto `markdown`. 
 ()
