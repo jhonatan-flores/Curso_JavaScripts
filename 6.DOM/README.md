@@ -119,9 +119,26 @@ body.appendChild(titulo)
 - **textContent** - nos permite agregar o modificar el contenido de un elemento.
 - **value** - nos permite optener o setear valores de un elemento `input`.
 ## Acciones o Eventos con elementos en el DOM (averiguar)
+El código que compartiste parece intentar asignar un evento al DOM utilizando `addEventListener`, pero tiene un error en el tipo de evento: "clic" debería ser "click" para que funcione correctamente en JavaScript.
+
+`addEventListener` en JavaScript
+El método addEventListener se utiliza para escuchar eventos en elementos del DOM, como clics, teclas presionadas, movimientos del mouse, etc.
+
+element.addEventListener(evento, manejador[, opciones]);
+evento: Nombre del evento (en inglés, como click, keydown, submit, etc.).
+manejador: Función que se ejecutará cuando ocurra el evento.
+opciones (opcional): Objeto o boolean que define propiedades adicionales, como si el evento debe capturarse en la fase de captura (true) o burbuja (false).
+```javascript
+
+document.getElementById("miBoton").addEventListener("click", () => {
+    alert("¡Botón clickeado!");
+});
+```
+```js
 addEventListener("clic",()=>{
     
 })
+```
 > [!NOTE]
 > tecnologias para el procesamiento de texto a travez de marcado `markup` (etiquetas- que nos permite a travez de palabras reservadas darle un estilo o significado al contenido de las etiquetas). la primera tecnologia fue `xml`, despues de la ultima generacion de tecnologias de markado de texto `markdown`. 
 ()
