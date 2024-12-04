@@ -1,0 +1,39 @@
+body {
+    display: flex;
+    align-content: center;
+}
+.titulo {
+    text-align: center;
+}
+.contenido {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+main {
+    background: aquamarine;
+    width: 60%;
+    margin-left: 13%;
+    padding: 3em;
+}
+.contenido > input {
+    height: 2em;
+    border-radius: 5px;
+}
+.contenido > button {
+    background-color: #1e81b0;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+button.eliminar {
+    background-color: red;
+    color: white;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+button.eliminar:hover {
+    background-color: darkred;
+}
