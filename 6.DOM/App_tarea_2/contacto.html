@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Crepa Fresh</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            font-family: 'Arial', sans-serif;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 800px;
+            min-height: 400px; /* Ajuste para que el cuadro sea lo suficientemente alto */
+        }
+        .btn-social {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        .btn-instagram { background-color: #e1306c; color: white; }
+        .btn-twitter { background-color: #1da1f2; color: white; }
+        .btn-facebook { background-color: #1877f2; color: white; }
+        .btn-tiktok { background-color: #000000; color: white; }
+        .btn-youtube { background-color: #ff0000; color: white; }
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+        .form-group input, .form-group button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f8f8f8;
+        }
+        h2, h3 {
+            color: #e63946;
+        }
+        .social-media {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>¡Contáctanos!</h2>
+        <p class="mb-4">Descubre las últimas novedades de <strong>Crepa Fresh</strong> en nuestras redes sociales:</p>
+
+        <!-- Formulario de contacto -->
+        <form id="contactForm">
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Nombre" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Correo Electrónico" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">ENVIAR</button>
+            </div>
+        </form>
+
+        <!-- Tabla de contactos -->
+        <table id="contactTable">
+            <thead>
+                <tr>
+                    <th>NOMBRES</th>
+                    <th>EMAIL</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Datos dinámicos -->
+            </tbody>
+        </table>
+
+        <!-- Redes sociales -->
+        <section class="social-media">
+            <a href="https://www.instagram.com/crepasf.resh/" class="btn btn-social btn-instagram">Instagram</a>
+            <a href="https://x.com/CrepasFresh" class="btn btn-social btn-twitter">Twitter</a>
+            <a href="https://www.facebook.com/profile.php?id=61561492947429&mibextid=ZbWKwL" class="btn btn-social btn-facebook">Facebook</a>
+            <a href="https://www.tiktok.com/@crepas.f..resh?_t=8qQo6Uk3oRi&_r=1" class="btn btn-social btn-tiktok">TikTok</a>
+            <a href="https://youtube.com/@crepas-cf9?si=AAOvcpkdPsgM7UVF" class="btn btn-social btn-youtube">YouTube</a>
+        </section>
+    </div>
+
+    <script>
+        let editingRow = null;
+
+        const form = document.getElementById('contactForm');
+        const table = document.getElementById('contactTable').querySelector('tbody');
+
+        // Manejar envío del formulario
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Evita que la página se recargue
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            if (name && email) {
+                if (editingRow) {
+                    // Si estamos editando, actualizamos la fila
+                    editingRow.cells[0].textContent = name;
+                    editingRow.cells[1].textContent = email;
+                    editingRow = null;
+                    form.querySelector('button').textContent = 'ENVIAR'; // Reset botón a 'Enviar'
+                } else {
+                    // Si no estamos editando, agregamos una nueva fila
+                    const row = table.insertRow();
+                    row.innerHTML = `
+                        <td>${name}</td>
+                        <td>${email}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" onclick="editRow(this)">✏️</button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">🗑️</button>
+                        </td>
+                    `;
+                }
+                // Limpiar los campos del formulario después de enviar
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+            } else {
+                alert('Por favor, completa todos los campos.');
+            }
+        });
+
+        // Editar fila
+        function editRow(button) {
+            const row = button.parentElement.parentElement;
+            const name = row.cells[0].textContent;
+            const email = row.cells[1].textContent;
+
+            document.getElementById('name').value = name;
+            document.getElementById('email').value = email;
+
+            editingRow = row; // Guardar la fila para editarla después
+            form.querySelector('button').textContent = 'REENVIAR'; // Cambiar el texto del botón
+        }
+
+        // Eliminar fila
+        function deleteRow(button) {
+            const row = button.parentElement.parentElement;
+            table.deleteRow(row.rowIndex - 1);
+        }
+    </script>
+</body>
+</html>
